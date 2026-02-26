@@ -1,71 +1,64 @@
-﻿export default function CTABanner() {
+const WHATSAPP_LINK =
+  'https://wa.me/2348161671113?text=Hi%20Bukkies%20Pot%2C%20I%20want%20to%20place%20an%20order.'
+
+export default function CTABanner() {
   return (
     <section
-      className="relative py-16 sm:py-20 px-4 sm:px-8 text-center overflow-hidden"
-      style={{ backgroundColor: '#2d1a08', fontFamily: "'Comfortaa', cursive" }}
+      className="relative overflow-hidden px-4 py-14 sm:py-16 text-center"
+      style={{ fontFamily: "'Comfortaa', cursive" }}
     >
-      <div
-        className="absolute top-1/2 hidden md:flex items-center justify-center rounded-3xl overflow-hidden shadow-2xl"
-        style={{
-          left: '32px',
-          width: '120px',
-          height: '128px',
-          transform: 'translateY(-50%) rotate(-10deg)',
-        }}
-      >
-        <img
-          src="/images/bukkies-platter-1.png"
-          alt="Assorted platter from Bukkies Pot"
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </div>
+      <div className="mx-auto max-w-5xl rounded-[2rem] border border-[#1a0f05]/10 bg-[#fffaf0] px-6 py-10 sm:px-8 sm:py-12 shadow-[0_10px_35px_rgba(26,15,5,0.08)]">
+        <div className="mb-6 flex justify-center">
+          <img
+            src="/images/logo.png"
+            alt="Bukkies Pot logo"
+            className="h-10 sm:h-12 w-auto object-contain"
+          />
+        </div>
 
-      <div
-        className="absolute top-1/2 hidden md:flex items-center justify-center rounded-3xl overflow-hidden shadow-2xl"
-        style={{
-          right: '32px',
-          width: '108px',
-          height: '120px',
-          transform: 'translateY(-50%) rotate(10deg)',
-        }}
-      >
-        <img
-          src="/images/jollof-fish-plate.jpg"
-          alt="Jollof rice and fish meal"
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </div>
+        <div className="pointer-events-none absolute left-4 top-14 hidden md:block">
+          <img
+            src="/images/bukkies-box-1.png"
+            alt="Packed meal box by Bukkies Pot"
+            className="-rotate-12 w-28 lg:w-32 object-contain drop-shadow-lg opacity-95"
+            loading="lazy"
+          />
+        </div>
 
-      <div className="flex justify-center mb-4">
-        <div className="w-10 h-10 bg-[#f97316] rounded-full flex items-center justify-center shadow-lg">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="white"
-            className="w-5 h-5"
+        <div className="pointer-events-none absolute right-4 top-14 hidden md:block">
+          <img
+            src="/images/bukkies-platter-1.png"
+            alt="Platter from Bukkies Pot"
+            className="rotate-12 w-28 lg:w-32 object-contain drop-shadow-lg opacity-95"
+            loading="lazy"
+          />
+        </div>
+
+        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a0f05] leading-tight mb-3">
+          Don&apos;t Wait - Order Now!
+        </h2>
+        <p className="mx-auto max-w-md text-sm text-[#4b4037] leading-relaxed mb-7">
+          Fresh ingredients, mouth-watering recipes, and a passion for good food
+          delivered to your door or ready for pickup.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f97316] px-7 py-3 text-sm font-bold text-white shadow-md transition-all hover:bg-orange-600 hover:-translate-y-0.5"
           >
-            <path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-8-15.03-8-15.03 0h15.03zM1.02 17h15v2h-15z" />
-          </svg>
+            Order Now {'->'}
+          </a>
+          <a
+            href="#full-menu"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-[#1a0f05]/20 bg-white px-7 py-3 text-sm font-bold text-[#1a0f05] transition-colors hover:bg-[#fff4e4]"
+          >
+            View Menu
+          </a>
         </div>
       </div>
-
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
-        Don&apos;t Wait - Order Now!
-      </h2>
-      <p className="text-white/75 text-sm mb-8 max-w-xs mx-auto leading-relaxed">
-        Fresh ingredients, mouth-watering meals, and a passion for good food,
-        ready for delivery or pick-up.
-      </p>
-      <a
-        href="https://wa.me/2348161671113"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex w-full max-w-xs sm:w-auto justify-center items-center gap-2 bg-[#f97316] text-white font-bold px-6 sm:px-9 py-3.5 rounded-full hover:bg-orange-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
-      >
-        Order on WhatsApp {'->'}
-      </a>
     </section>
   )
 }

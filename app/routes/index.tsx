@@ -23,7 +23,6 @@ function Home() {
 
       <main id="main-content" className="pt-24 md:pt-28">
         <Hero />
-        <FeaturedDishes />
         <Menu />
         <WhyChooseUs />
         <Testimonials />

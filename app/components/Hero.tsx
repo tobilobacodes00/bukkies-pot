@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const sliderImages = [
   { src: '/hero-slider/1st.png', alt: 'Bukkies Pot meal 1' },
@@ -8,52 +8,46 @@ const sliderImages = [
   { src: '/hero-slider/5th.png', alt: 'Bukkies Pot meal 5' },
 ]
 
+const edgeImages = {
+  left: '/random-plates-of-food/176b53ef-e721-4005-b26a-5a264a7e0eaf-Photoroom.png',
+  right: '/random-plates-of-food/3b4da1ce-2701-44aa-8c7b-ad308e4e192e-Photoroom.png',
+}
+
 export default function Hero() {
-  const [current, setCurrent] = useState(0)
+  // Only used to highlight the active dot — the slider itself is CSS-driven
+  const [dotIdx, setDotIdx] = useState(0)
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % sliderImages.length)
+    const id = setInterval(() => {
+      setDotIdx((d) => (d + 1) % sliderImages.length)
     }, 4000)
-    return () => clearInterval(timer)
+    return () => clearInterval(id)
   }, [])
 
   return (
     <section className="bg-[#fffbf0] pt-12 pb-10 overflow-hidden">
       <div className="relative max-w-5xl mx-auto px-6">
         <div
-          className="hidden lg:flex absolute left-0 top-0 rounded-3xl overflow-hidden shadow-2xl"
-          style={{
-            width: '130px',
-            height: '130px',
-            transform: 'rotate(-9deg)',
-            zIndex: 10,
-          }}
+          className="absolute -left-10 top-2 flex h-auto w-30 sm:h-24 sm:w-24 lg:left-0 lg:top-0 lg:h-[330px] lg:w-[330px] -rotate-12 lg:-rotate-9 z-10 pointer-events-none"
         >
           <img
-            src="/images/jollof-fish-plate.jpg"
-            alt="Jollof rice and fish plate"
-            className="w-full h-full object-cover"
+            src={edgeImages.left}
+            alt="Decorative plate from Bukkies Pot menu"
+            className="w-full h-full object-contain"
           />
         </div>
 
         <div
-          className="hidden lg:flex absolute right-0 top-0 rounded-3xl overflow-hidden shadow-2xl"
-          style={{
-            width: '116px',
-            height: '138px',
-            transform: 'rotate(9deg)',
-            zIndex: 10,
-          }}
+          className="absolute -right-10 top-4 flex h-auto w-30 sm:h-28 sm:w-24 lg:right-0 lg:top-0 lg:h-[338px] lg:w-[316px] rotate-12 lg:rotate-9 z-10 pointer-events-none"
         >
           <img
-            src="/images/bukkies-platter-2.png"
-            alt="Assorted platter served by Bukkies Pot"
-            className="w-full h-full object-cover"
+            src={edgeImages.right}
+            alt="Decorative plate from Bukkies Pot menu"
+            className="w-full h-full object-contain"
           />
         </div>
 
-        <div className="text-center lg:px-52 px-2">
+        <div className="relative z-20 text-center lg:px-52 px-2">
           <h1
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1a0f05] leading-tight mb-4"
             style={{ fontFamily: "'Comfortaa', cursive" }}
@@ -78,33 +72,20 @@ export default function Hero() {
       </div>
 
       <div className="mt-10 mx-4 sm:mx-8 max-w-5xl lg:mx-auto">
-        <div className="rounded-3xl overflow-hidden shadow-lg">
-          <div
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{
-              width: `${sliderImages.length * 100}%`,
-              transform: `translateX(-${current * (100 / sliderImages.length)}%)`,
-            }}
-          >
+        {/* overflow-hidden clips the off-screen slides */}
+        <div style={{ borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 4px 24px rgba(26,15,5,0.1)' }}>
+          {/* hero-slider-track CSS class runs the animation */}
+          <div className="hero-slider-track" style={{ display: 'flex', width: '500%' }}>
             {sliderImages.map((img) => (
-              <div key={img.src} style={{ width: `${100 / sliderImages.length}%` }}>
-                <img src={img.src} alt={img.alt} className="w-full h-auto block" />
+              <div key={img.src} style={{ width: '20%' }}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Dot indicators */}
-        <div className="flex justify-center gap-2 mt-3">
-          {sliderImages.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className="w-2.5 h-2.5 rounded-full transition-all"
-              style={{ background: i === current ? '#f97316' : 'rgba(26,15,5,0.2)' }}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
         </div>
       </div>
     </section>

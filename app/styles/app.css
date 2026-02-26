@@ -81,9 +81,23 @@ h3 { font-size: clamp(1.1rem,  3vw, 1.5rem); line-height: 1.4; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 
-/* ─── Hero slider fade ───────────────────────────────────────── */
-@keyframes hero-fade { from { opacity: 0 } to { opacity: 1 } }
-.hero-slide-in { animation: hero-fade 0.6s ease-in-out; }
+/* ─── Hero slider ────────────────────────────────────────────── */
+/* 5 slides × 4 s each = 20 s total.
+   Each slide holds for 3.5 s, slides for 0.5 s.
+   Percentages are of the 500%-wide flex track.              */
+@keyframes hero-slider {
+  0%,   17.5% { transform: translateX(0) }
+  20%,  37.5% { transform: translateX(-20%) }
+  40%,  57.5% { transform: translateX(-40%) }
+  60%,  77.5% { transform: translateX(-60%) }
+  80%,  100%  { transform: translateX(-80%) }
+}
+.hero-slider-track {
+  animation: hero-slider 20s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slider-track { animation: none; }
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
