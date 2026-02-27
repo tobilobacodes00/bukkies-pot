@@ -10,7 +10,7 @@ The official website for **Bukkie's Pot**, a Nigerian food catering business off
 |---|---|
 | Framework | [TanStack Start](https://tanstack.com/start) v1 (full-stack React SSR) |
 | Routing | [TanStack Router](https://tanstack.com/router) v1 (file-based, type-safe) |
-| Server Runtime | [Nitro](https://nitro.build) v3 (Vercel preset) |
+| Server Runtime | TanStack Start SSR handler (`app/server.tsx`) |
 | Styling | [Tailwind CSS v4](https://tailwindcss.com) + custom Bauhaus utilities |
 | Animations | [Framer Motion](https://www.framer.com/motion/) |
 | UI Primitives | [shadcn/ui](https://ui.shadcn.com) + [Radix UI](https://www.radix-ui.com) |
@@ -32,7 +32,7 @@ npm install
 # Start the development server
 npm run dev
 
-# Build for production (outputs to .vercel/output for Vercel)
+# Build for production
 npm run build
 
 # Preview the production build locally
@@ -68,7 +68,7 @@ bukkiespot/
 │   │   └── app.css             # Tailwind imports, Bauhaus design tokens, base styles
 │   ├── lib/
 │   │   └── utils.ts            # Tailwind merge / clsx helper
-│   ├── server.tsx              # SSR server entry point (TanStack Start / Nitro)
+│   ├── server.tsx              # SSR server entry point (TanStack Start)
 │   ├── client.tsx              # Client-side hydration entry
 │   ├── router.tsx              # TanStack Router instance
 │   └── vite-env.d.ts           # Vite client type reference
@@ -83,7 +83,7 @@ bukkiespot/
 │   ├── robots.txt              # Search engine crawl directives
 │   └── sitemap.xml             # Site URL map for crawlers
 ├── components.json             # shadcn/ui configuration
-├── vite.config.ts              # Vite + TanStack Start + Nitro + Tailwind config
+├── vite.config.ts              # Vite + TanStack Start + Tailwind config
 ├── tsconfig.json               # TypeScript configuration
 └── package.json
 ```
@@ -229,25 +229,17 @@ Replace `public/images/og-image.jpeg` and update the dimensions in `__root.tsx` 
 
 ## Deployment
 
-Configured for **Vercel** via the Nitro `vercel` preset in [vite.config.ts](vite.config.ts).
+Configured for **Vercel** as a TanStack Start app.
 
 ```bash
-npm run build   # Compiles SSR server + static assets to .vercel/output
+npm run build
 ```
 
 **Build output:**
 ```
-.vercel/output/
-- config.json                     # Vercel routing config
-- functions/__server.func/        # SSR server function
-- static/                         # Static assets (JS, CSS, images)
+dist/
+- client/                         # Static assets (JS, CSS, images)
+- server/                         # SSR server bundle
 ```
 
-**To deploy to Vercel:** connect the repository and Vercel will auto-detect the TanStack Start + Nitro setup. No additional configuration needed.
-
-To deploy to a different host, change the `preset` in `vite.config.ts`:
-```ts
-nitro({ preset: 'node-server' })   // Generic Node.js
-nitro({ preset: 'cloudflare' })    // Cloudflare Workers
-nitro({ preset: 'aws-lambda' })    // AWS Lambda
-```
+**To deploy to Vercel:** set framework to `tanstack-start` and use `npm run build` as build command.
