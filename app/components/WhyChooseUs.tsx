@@ -72,7 +72,7 @@ function FeatureMedia({ feature }: { feature: Feature }) {
           className="h-44 w-44 rounded-full border-[3px] border-[#1a0f05] object-cover shadow-[6px_6px_0_#1a0f05]"
           loading="lazy"
         />
-        <span className="absolute -bottom-2 -right-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#7c3aed] text-white shadow-lg text-lg">
+        <span aria-hidden="true" className="absolute -bottom-2 -right-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#7c3aed] text-white shadow-lg text-lg">
           *
         </span>
       </div>
@@ -88,7 +88,7 @@ function FeatureMedia({ feature }: { feature: Feature }) {
           className="-rotate-6 h-44 w-44 rounded-2xl border-[3px] border-[#1a0f05] object-cover shadow-[6px_6px_0_#1a0f05]"
           loading="lazy"
         />
-        <span className="absolute -bottom-2 -right-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f97316] text-white shadow-lg text-lg">
+        <span aria-hidden="true" className="absolute -bottom-2 -right-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f97316] text-white shadow-lg text-lg">
           +
         </span>
       </div>
@@ -109,7 +109,7 @@ function FeatureMedia({ feature }: { feature: Feature }) {
         className="absolute right-0 top-0 h-34 w-34 rounded-2xl border-[3px] border-[#1a0f05] object-cover shadow-[5px_5px_0_#1a0f05]"
         loading="lazy"
       />
-      <span className="absolute bottom-0 left-12 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#9333ea] text-white text-xs shadow-lg">
+      <span aria-hidden="true" className="absolute bottom-0 left-12 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#9333ea] text-white text-xs shadow-lg">
         #
       </span>
     </div>
@@ -155,7 +155,7 @@ export default function WhyChooseUs() {
                       <FeatureIcon color={feature.iconColor} />
                     </div>
                     <h3
-                      className="mb-2 text-2xl font-bold leading-tight text-[#1f1846]"
+                      className="mb-2 text-2xl font-bold leading-tight"
                       style={{ color: feature.iconColor }}
                     >
                       {feature.title}
@@ -168,7 +168,7 @@ export default function WhyChooseUs() {
                       className="bauhaus-btn inline-flex items-center gap-2 px-5 py-2 text-xs text-[#1a0f05]"
                       style={{ backgroundColor: feature.ctaBg }}
                     >
-                      View Menu {'->'}
+                      View Menu →
                     </a>
                   </div>
                 </div>

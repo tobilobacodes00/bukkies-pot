@@ -267,7 +267,7 @@ h3 { font-size: clamp(1.1rem,  3vw, 1.5rem); line-height: 1.4; }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;

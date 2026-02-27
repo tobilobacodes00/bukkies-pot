@@ -163,6 +163,7 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: 'canonical', href: SITE_URL },
+      { rel: 'preload', as: 'image', href: '/hero-slider/1st.png' },
       { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
       { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' },
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -217,12 +218,7 @@ function RootComponent() {
       <head>
         <HeadContent />
       </head>
-      <body
-        style={{
-          fontFamily: "'Comfortaa', cursive",
-          backgroundColor: '#fffbf0',
-        }}
-      >
+      <body>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

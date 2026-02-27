@@ -3,22 +3,22 @@ import { ScrollReveal } from './ScrollReveal'
 const TESTIMONIAL_IMAGES = [
   {
     src: '/testimonials/WhatsApp%20Image%202026-02-23%20at%2020.44.17.jpeg',
-    alt: 'Customer testimonial screenshot 1',
+    alt: 'WhatsApp message from customer praising fresh packaging by Bukkies Pot',
     quote: 'Always fresh and beautifully packaged.',
   },
   {
     src: '/testimonials/WhatsApp%20Image%202026-02-23%20at%2020.44.37.jpeg',
-    alt: 'Customer testimonial screenshot 2',
+    alt: 'WhatsApp message from customer praising on-time delivery from Bukkies Pot',
     quote: 'Great taste and right-on-time delivery.',
   },
   {
     src: '/testimonials/WhatsApp%20Image%202026-02-23%20at%2020.45.09.jpeg',
-    alt: 'Customer testimonial screenshot 3',
+    alt: 'WhatsApp message from customer recommending Bukkies Pot for events and family orders',
     quote: 'Perfect for events and family orders.',
   },
   {
     src: '/testimonials/WhatsApp%20Image%202026-02-23%20at%2020.45.10.jpeg',
-    alt: 'Customer testimonial screenshot 4',
+    alt: 'WhatsApp message from customer saying guests loved the dishes served by Bukkies Pot',
     quote: 'Our guests loved every dish served.',
   },
 ]

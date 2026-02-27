@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bukkiespot.com/sitemap.xml

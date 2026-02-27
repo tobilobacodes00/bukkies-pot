@@ -87,7 +87,7 @@ export default function Footer() {
 
           <div className="border-t border-dashed border-[#1a0f05]/30 pt-4 pb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-[11px] text-[#4b4037]">
-              (c) 2026 Bukkies Pot | All rights reserved.
+              © 2026 Bukkies Pot | All rights reserved.
             </p>
             <div className="flex items-center gap-4 text-[11px] text-[#4b4037]">
               <span>Made by</span>

@@ -54,7 +54,7 @@ export default function CTABanner() {
               rel="noopener noreferrer"
               className="bauhaus-btn inline-flex items-center justify-center gap-2 bg-[#f97316] px-7 py-3 text-sm text-[#1a0f05]"
             >
-              Order Now {'->'}
+              Order Now →
             </a>
             <a
               href="#full-menu"

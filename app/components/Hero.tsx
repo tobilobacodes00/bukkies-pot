@@ -1,5 +1,8 @@
 import { ScrollReveal } from './ScrollReveal'
 
+const WHATSAPP_LINK =
+  'https://wa.me/2348161671113?text=Hi%20Bukkies%20Pot%2C%20I%20want%20to%20place%20an%20order.'
+
 const sliderImages = [
   { src: '/hero-slider/1st.png', alt: 'Bukkies Pot meal 1' },
   { src: '/hero-slider/2nd.png', alt: 'Bukkies Pot meal 2' },
@@ -24,7 +27,7 @@ export default function Hero() {
         >
           <img
             src={edgeImages.left}
-            alt="Decorative plate from Bukkies Pot menu"
+            alt=""
             className="w-full h-full object-contain"
           />
         </div>
@@ -34,7 +37,7 @@ export default function Hero() {
         >
           <img
             src={edgeImages.right}
-            alt="Decorative plate from Bukkies Pot menu"
+            alt=""
             className="w-full h-full object-contain"
           />
         </div>
@@ -54,11 +57,13 @@ export default function Hero() {
             catering, served with excellence and style.
           </p>
           <a
-            href="#contact"
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
             className="bauhaus-btn inline-flex items-center gap-2 bg-[#f97316] text-[#1a0f05] px-8 py-3 text-sm sm:text-base"
             style={{ fontFamily: "'Comfortaa', cursive" }}
           >
-            Order Now <span>{'->'}</span>
+            Order Now →
           </a>
         </ScrollReveal>
       </div>
@@ -66,11 +71,12 @@ export default function Hero() {
       <ScrollReveal className="mt-10 mx-4 sm:mx-8 max-w-5xl lg:mx-auto" y={28} delay={0.2}>
         <div className="bauhaus-card-lg overflow-hidden">
           <div className="hero-slider-track" style={{ display: 'flex', width: '500%' }}>
-            {sliderImages.map((img) => (
+            {sliderImages.map((img, i) => (
               <div key={img.src} style={{ width: '20%' }}>
                 <img
                   src={img.src}
                   alt={img.alt}
+                  loading={i === 0 ? undefined : 'lazy'}
                   style={{ width: '100%', height: 'auto', display: 'block' }}
                 />
               </div>

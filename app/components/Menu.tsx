@@ -143,7 +143,7 @@ export default function Menu() {
       <div className="relative z-10">
         <ScrollReveal y={18}>
           <div className="flex justify-center mb-5">
-            <div className="bauhaus-chip flex h-12 w-12 items-center justify-center bg-[#f97316] text-xl">
+            <div aria-hidden="true" className="bauhaus-chip flex h-12 w-12 items-center justify-center bg-[#f97316] text-xl">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

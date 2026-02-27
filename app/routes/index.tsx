@@ -1,7 +1,6 @@
 ﻿import { createFileRoute } from '@tanstack/react-router'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
-import FeaturedDishes from '../components/FeaturedDishes'
 import Menu from '../components/Menu'
 import WhyChooseUs from '../components/WhyChooseUs'
 import Testimonials from '../components/Testimonials'
