@@ -163,6 +163,8 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: 'canonical', href: SITE_URL },
+      { rel: 'icon', type: 'image/png', href: '/images/logo.png' },
+      { rel: 'apple-touch-icon', href: '/images/logo.png' },
       { rel: 'preload', as: 'image', href: '/hero-slider/1st.png' },
       { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
       { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' },
