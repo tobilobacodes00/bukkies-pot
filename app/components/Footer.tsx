@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 const PRIMARY_PHONE = '08161671113'
 const PRIMARY_WHATSAPP = 'https://wa.me/2348161671113'
 const CONTACT_EMAIL = 'Bukkiespot_help@yahoo.com'
+const MAKER_SITE = 'https://tobilobasulaimon.com'
 
 function IconCircle({ children }: { children: ReactNode }) {
   return (
@@ -36,38 +37,6 @@ function MailIcon() {
   )
 }
 
-function InstagramIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
-      <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2ZM12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5Zm0 2a3 3 0 1 1-3 3 3 3 0 0 1 3-3Zm5.38-3.5a1.12 1.12 0 1 0 1.12 1.12 1.12 1.12 0 0 0-1.12-1.12Z" />
-    </svg>
-  )
-}
-
-function FacebookIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
-      <path d="M13.5 22V13h3l.5-3h-3.5V8.5c0-.9.3-1.5 1.7-1.5H17V4.2c-.3 0-1.2-.2-2.3-.2-2.3 0-3.9 1.4-3.9 4V10H8v3h2.8v9h2.7Z" />
-    </svg>
-  )
-}
-
-function LinkedInIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
-      <path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05A4.17 4.17 0 0 1 17.6 8c4 0 4.4 2.64 4.4 6.08V21h-4v-5.8c0-1.38-.02-3.16-1.92-3.16-1.93 0-2.22 1.5-2.22 3.06V21h-4V9Z" />
-    </svg>
-  )
-}
-
-function XIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
-      <path d="M18.9 2H22l-6.8 7.78L23 22h-6.1l-4.78-6.25L6.6 22H3.5l7.27-8.31L1 2h6.26l4.32 5.72L18.9 2Zm-1.08 18h1.69L6.32 3.9H4.5L17.82 20Z" />
-    </svg>
-  )
-}
-
 export default function Footer() {
   return (
     <footer
@@ -75,57 +44,18 @@ export default function Footer() {
       id="contact"
       style={{ fontFamily: "'Comfortaa', cursive" }}
     >
-      <div className="mx-auto max-w-5xl grid grid-cols-2 md:grid-cols-4 gap-8 py-10">
+      <div className="mx-auto max-w-5xl grid grid-cols-2 gap-8 py-10">
         <div>
           <h4 className="mb-3 text-base font-bold text-[#1a0f05]">Navigate</h4>
           <ul className="space-y-2 text-sm text-[#4b4037]">
             <li><a href="#" className="hover:text-[#f97316]">Home</a></li>
-            <li><a href="#menu" className="hover:text-[#f97316]">Menu</a></li>
-            <li><a href="#about" className="hover:text-[#f97316]">About</a></li>
+            <li><a href="#full-menu" className="hover:text-[#f97316]">Menu</a></li>
+            <li><a href="#about" className="hover:text-[#f97316]">Why Us</a></li>
+            <li><a href="#gallery" className="hover:text-[#f97316]">Gallery</a></li>
             <li><a href="#contact" className="hover:text-[#f97316]">Contact</a></li>
-            <li><a href={PRIMARY_WHATSAPP} target="_blank" rel="noopener noreferrer" className="hover:text-[#f97316]">Book Now</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="mb-3 text-base font-bold text-[#1a0f05]">Menu</h4>
-          <ul className="space-y-2 text-sm text-[#4b4037]">
-            <li><a href="#full-menu" className="hover:text-[#f97316]">Breakfast</a></li>
-            <li><a href="#full-menu" className="hover:text-[#f97316]">Lunch</a></li>
-            <li><a href="#full-menu" className="hover:text-[#f97316]">Dinner</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="mb-3 text-base font-bold text-[#1a0f05]">Follow Us</h4>
-          <ul className="space-y-2 text-sm text-[#4b4037]">
             <li>
-              <a href="#" className="inline-flex items-center gap-2 hover:text-[#f97316]">
-                <IconCircle><FacebookIcon /></IconCircle>
-                <span>Facebook</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://instagram.com/bukkiespot"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-[#f97316]"
-              >
-                <IconCircle><InstagramIcon /></IconCircle>
-                <span>Instagram</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="inline-flex items-center gap-2 hover:text-[#f97316]">
-                <IconCircle><LinkedInIcon /></IconCircle>
-                <span>LinkedIn</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="inline-flex items-center gap-2 hover:text-[#f97316]">
-                <IconCircle><XIcon /></IconCircle>
-                <span>Twitter</span>
+              <a href={PRIMARY_WHATSAPP} target="_blank" rel="noopener noreferrer" className="hover:text-[#f97316]">
+                Book Now
               </a>
             </li>
           </ul>
@@ -157,9 +87,15 @@ export default function Footer() {
           (c) 2026 Bukkies Pot | All rights reserved.
         </p>
         <div className="flex items-center gap-4 text-[11px] text-[#4b4037]">
-          <a href="#" className="hover:text-[#f97316]">License</a>
-          <a href="#" className="hover:text-[#f97316]">Changelog</a>
-          <a href="#" className="hover:text-[#f97316]">Style Guide</a>
+          <span>Made by</span>
+          <a
+            href={MAKER_SITE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold hover:text-[#f97316]"
+          >
+            Tobiloba Sulaimon
+          </a>
         </div>
       </div>
     </footer>

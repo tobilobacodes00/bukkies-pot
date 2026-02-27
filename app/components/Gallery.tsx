@@ -5,38 +5,50 @@ type VideoPost = {
   alt: string
   tag: string
   caption: string
+  poster: string
 }
+
+const buildVideoSrc = (fileName: string) => encodeURI(`/video gallery/${fileName}`)
 
 const VIDEO_POSTS: VideoPost[] = [
   {
-    src: '/video%20gallery/IMG_5017.MOV',
+    src: buildVideoSrc('IMG_5017.MOV'),
     alt: 'Food preparation and plating clip',
     tag: 'Kitchen Clip',
     caption: 'Fresh prep in motion',
+    poster:
+      '/random-plates-of-food/176b53ef-e721-4005-b26a-5a264a7e0eaf-Photoroom.png',
   },
   {
-    src: '/video%20gallery/IMG_5021.MOV',
+    src: buildVideoSrc('IMG_5021.MOV'),
     alt: 'Catering setup clip',
     tag: 'Catering Clip',
     caption: 'Setup before service',
+    poster:
+      '/random-plates-of-food/3b4da1ce-2701-44aa-8c7b-ad308e4e192e-Photoroom.png',
   },
   {
-    src: '/video%20gallery/IMG_8720.MOV',
+    src: buildVideoSrc('IMG_8720.MOV'),
     alt: 'Serving and presentation clip',
     tag: 'Serving Clip',
     caption: 'Service done with style',
+    poster: '/random-plates-of-food/f35de54e-e153-4162-ac35-3c34ea18c450-Photoroom.png',
   },
   {
-    src: '/video%20gallery/IMG_8846.MOV',
+    src: buildVideoSrc('IMG_8846.MOV'),
     alt: 'Plated meal close-up clip',
     tag: 'Meal Clip',
     caption: 'Close-up flavor moments',
+    poster:
+      '/random-plates-of-food/a85bddf8-14c3-46a4-9fb4-ec6cb841f998-Photoroom.png',
   },
   {
-    src: '/video%20gallery/IMG_9272.MOV',
+    src: buildVideoSrc('IMG_9272.MOV'),
     alt: 'Event food display clip',
     tag: 'Event Clip',
     caption: 'A full table experience',
+    poster:
+      '/random-plates-of-food/Gemini_Generated_Image_c300orc300orc300-Photoroom.png',
   },
 ]
 
@@ -68,6 +80,10 @@ function PlayIcon() {
   )
 }
 
+function isModernMediaQueryList(media: MediaQueryList) {
+  return typeof media.addEventListener === 'function'
+}
+
 export default function Gallery() {
   const modalFeedRef = useRef<HTMLDivElement | null>(null)
   const modalVideoRefs = useRef<Array<HTMLVideoElement | null>>([])
@@ -76,6 +92,15 @@ export default function Gallery() {
   const [isMobile, setIsMobile] = useState(false)
   const [isFeedOpen, setIsFeedOpen] = useState(false)
   const [startIndex, setStartIndex] = useState(0)
+  const [failedPostIndexes, setFailedPostIndexes] = useState<number[]>([])
+
+  const markPostFailed = (index: number) => {
+    setFailedPostIndexes((current) =>
+      current.includes(index) ? current : [...current, index],
+    )
+  }
+
+  const hasFailed = (index: number) => failedPostIndexes.includes(index)
 
   const openFeed = (index: number) => {
     setStartIndex(index)
@@ -84,34 +109,51 @@ export default function Gallery() {
 
   useEffect(() => {
     const media = window.matchMedia('(max-width: 767px)')
-    const update = () => setIsMobile(media.matches)
-    update()
-    media.addEventListener('change', update)
-    return () => media.removeEventListener('change', update)
+    setIsMobile(media.matches)
+
+    if (isModernMediaQueryList(media)) {
+      const onChange = (event: MediaQueryListEvent) => setIsMobile(event.matches)
+      media.addEventListener('change', onChange)
+      return () => media.removeEventListener('change', onChange)
+    }
+
+    const onLegacyChange = () => setIsMobile(media.matches)
+    media.addListener(onLegacyChange)
+    return () => media.removeListener(onLegacyChange)
   }, [])
 
   useEffect(() => {
-    const prev = document.body.style.overflow
+    const previousOverflow = document.body.style.overflow
     if (isFeedOpen) document.body.style.overflow = 'hidden'
     return () => {
-      document.body.style.overflow = prev
+      document.body.style.overflow = previousOverflow
     }
   }, [isFeedOpen])
 
   useEffect(() => {
     if (!isFeedOpen) return
 
-    const onEsc = (event: KeyboardEvent) => {
+    const onEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setIsFeedOpen(false)
     }
-    window.addEventListener('keydown', onEsc)
-    return () => window.removeEventListener('keydown', onEsc)
+    window.addEventListener('keydown', onEscape)
+    return () => window.removeEventListener('keydown', onEscape)
   }, [isFeedOpen])
 
   useEffect(() => {
     if (!isFeedOpen) return
     const root = modalFeedRef.current
     if (!root) return
+
+    const currentVideos = modalVideoRefs.current.filter(Boolean) as HTMLVideoElement[]
+
+    if (typeof IntersectionObserver === 'undefined') {
+      currentVideos.forEach((video) => {
+        const playPromise = video.play()
+        if (playPromise) playPromise.catch(() => {})
+      })
+      return
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -120,17 +162,15 @@ export default function Gallery() {
           if (entry.isIntersecting) {
             const playPromise = video.play()
             if (playPromise) playPromise.catch(() => {})
-          } else {
-            video.pause()
+            return
           }
+          video.pause()
         })
       },
       { root, threshold: 0.72 },
     )
 
-    const currentVideos = modalVideoRefs.current.filter(Boolean) as HTMLVideoElement[]
     currentVideos.forEach((video) => observer.observe(video))
-
     return () => observer.disconnect()
   }, [isFeedOpen])
 
@@ -172,6 +212,7 @@ export default function Gallery() {
               >
                 <video
                   src={post.src}
+                  poster={post.poster}
                   aria-label={post.alt}
                   className="absolute inset-0 h-full w-full object-cover"
                   loop
@@ -179,22 +220,45 @@ export default function Gallery() {
                   playsInline
                   autoPlay
                   preload="metadata"
-                />
+                  onError={() => markPostFailed(index)}
+                >
+                  <source src={post.src} type="video/quicktime" />
+                </video>
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
 
-                <button
-                  type="button"
-                  onClick={() => openFeed(index)}
+                <a
+                  href={post.src}
+                  onClick={(event) => {
+                    event.preventDefault()
+                    openFeed(index)
+                  }}
+                  className="absolute inset-0 z-20 flex items-center justify-center focus-visible:outline-white"
                   aria-label={`Open viewer from ${post.caption}`}
-                  className="absolute inset-0 z-20 flex items-center justify-center"
                 >
                   <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-[#1a0f05] shadow-xl">
                     <PlayIcon />
                   </span>
-                </button>
+                </a>
 
-                <div className="absolute bottom-4 left-4 right-4 z-10 text-white">
+                {hasFailed(index) && (
+                  <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-3 bg-black/70 px-4 text-center text-white">
+                    <p className="text-xs sm:text-sm">
+                      This clip format is not supported in your browser preview.
+                    </p>
+                    <a
+                      href={post.src}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(event) => event.stopPropagation()}
+                      className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-[#1a0f05]"
+                    >
+                      Open Clip
+                    </a>
+                  </div>
+                )}
+
+                <div className="absolute bottom-4 left-4 right-4 z-10 text-white pointer-events-none">
                   <p className="text-[11px] uppercase tracking-[0.16em] text-white/75">
                     {post.tag}
                   </p>
@@ -208,7 +272,7 @@ export default function Gallery() {
 
       {isFeedOpen && (
         <div
-          className="fixed inset-0 z-[120] bg-black/90"
+          className="fixed inset-0 z-[220] bg-black/90"
           role="dialog"
           aria-modal="true"
           onClick={() => setIsFeedOpen(false)}
@@ -242,16 +306,17 @@ export default function Gallery() {
                 {VIDEO_POSTS.map((post, index) => (
                   <article
                     key={`modal-${post.src}`}
-                    ref={(el) => {
-                      modalCardRefs.current[index] = el
+                    ref={(element) => {
+                      modalCardRefs.current[index] = element
                     }}
                     className="relative mb-2 last:mb-0 h-[88vh] snap-start overflow-hidden rounded-2xl bg-black"
                   >
                     <video
-                      ref={(el) => {
-                        modalVideoRefs.current[index] = el
+                      ref={(element) => {
+                        modalVideoRefs.current[index] = element
                       }}
                       src={post.src}
+                      poster={post.poster}
                       aria-label={post.alt}
                       className="absolute inset-0 h-full w-full object-cover"
                       loop
@@ -259,7 +324,26 @@ export default function Gallery() {
                       playsInline
                       controls
                       preload="metadata"
-                    />
+                      onError={() => markPostFailed(index)}
+                    >
+                      <source src={post.src} type="video/quicktime" />
+                    </video>
+
+                    {hasFailed(index) && (
+                      <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-3 bg-black/70 px-4 text-center text-white">
+                        <p className="text-xs sm:text-sm">
+                          Browser preview failed for this clip format.
+                        </p>
+                        <a
+                          href={post.src}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-[#1a0f05]"
+                        >
+                          Open Clip
+                        </a>
+                      </div>
+                    )}
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent pointer-events-none" />
                     <div className="absolute bottom-4 left-4 right-4 z-10 pointer-events-none text-white">
@@ -267,9 +351,7 @@ export default function Gallery() {
                         {post.tag}
                       </p>
                       <h3 className="mt-1 text-base sm:text-lg font-bold">{post.caption}</h3>
-                      <p className="mt-1 text-xs text-white/85">
-                        Swipe up for next clip.
-                      </p>
+                      <p className="mt-1 text-xs text-white/85">Swipe up for next clip.</p>
                     </div>
                   </article>
                 ))}
