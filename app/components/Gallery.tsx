@@ -209,36 +209,22 @@ export default function Gallery() {
                 aria-label={`Open viewer from ${post.caption}`}
                 className="relative h-[62vh] sm:h-[66vh] w-[78vw] sm:w-[360px] snap-start shrink-0 overflow-hidden rounded-3xl bg-black shadow-xl cursor-pointer"
               >
-                <video
-                  src={post.src}
-                  poster={post.poster}
+                <img
+                  src={post.poster}
                   aria-label={post.alt}
                   className="absolute inset-0 h-full w-full object-cover"
-                  loop
-                  muted
-                  playsInline
-                  autoPlay
-                  preload="metadata"
-                  onError={() => markPostFailed(index)}
-                >
-                  <source src={post.src} type="video/quicktime" />
-                </video>
+                  loading="lazy"
+                  decoding="async"
+                />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-
-                {hasFailed(index) && (
-                  <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center gap-3 bg-black/70 px-4 text-center text-white">
-                    <p className="text-xs sm:text-sm">
-                      Preview format failed in this browser. Tap the clip to open the viewer.
-                    </p>
-                  </div>
-                )}
 
                 <div className="absolute bottom-4 left-4 right-4 z-10 text-white pointer-events-none">
                   <p className="text-[11px] uppercase tracking-[0.16em] text-white/75">
                     {post.tag}
                   </p>
                   <h3 className="mt-1 text-base sm:text-lg font-bold">{post.caption}</h3>
+                  <p className="mt-1 text-xs text-white/85">Tap to open video</p>
                 </div>
               </article>
             ))}
@@ -299,7 +285,7 @@ export default function Gallery() {
                       muted
                       playsInline
                       controls
-                      preload="metadata"
+                      preload="none"
                       onError={() => markPostFailed(index)}
                     >
                       <source src={post.src} type="video/quicktime" />
