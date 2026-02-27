@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { ScrollReveal } from './ScrollReveal'
 
 const sliderImages = [
   { src: '/hero-slider/1st.png', alt: 'Bukkies Pot meal 1' },
@@ -14,16 +14,6 @@ const edgeImages = {
 }
 
 export default function Hero() {
-  // Only used to highlight the active dot — the slider itself is CSS-driven
-  const [dotIdx, setDotIdx] = useState(0)
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setDotIdx((d) => (d + 1) % sliderImages.length)
-    }, 4000)
-    return () => clearInterval(id)
-  }, [])
-
   return (
     <section className="bg-[#fffbf0] pt-12 pb-10 overflow-hidden">
       <div className="relative max-w-5xl mx-auto px-6">
@@ -47,7 +37,7 @@ export default function Hero() {
           />
         </div>
 
-        <div className="relative z-20 text-center lg:px-52 px-2">
+        <ScrollReveal className="relative z-20 text-center lg:px-52 px-2" y={20} delay={0.1}>
           <h1
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1a0f05] leading-tight mb-4"
             style={{ fontFamily: "'Comfortaa', cursive" }}
@@ -68,13 +58,17 @@ export default function Hero() {
           >
             Order Now <span>{'->'}</span>
           </a>
-        </div>
+        </ScrollReveal>
       </div>
 
-      <div className="mt-10 mx-4 sm:mx-8 max-w-5xl lg:mx-auto">
-        {/* overflow-hidden clips the off-screen slides */}
-        <div style={{ borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 4px 24px rgba(26,15,5,0.1)' }}>
-          {/* hero-slider-track CSS class runs the animation */}
+      <ScrollReveal className="mt-10 mx-4 sm:mx-8 max-w-5xl lg:mx-auto" y={28} delay={0.2}>
+        <div
+          style={{
+            borderRadius: '1.5rem',
+            overflow: 'hidden',
+            boxShadow: '0 4px 24px rgba(26,15,5,0.1)',
+          }}
+        >
           <div className="hero-slider-track" style={{ display: 'flex', width: '500%' }}>
             {sliderImages.map((img) => (
               <div key={img.src} style={{ width: '20%' }}>
@@ -87,7 +81,7 @@ export default function Hero() {
             ))}
           </div>
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   )
 }

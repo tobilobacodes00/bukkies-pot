@@ -1,3 +1,5 @@
+import { ScrollReveal } from './ScrollReveal'
+
 const WHATSAPP_LINK =
   'https://wa.me/2348161671113?text=Hi%20Bukkies%20Pot%2C%20I%20want%20to%20place%20an%20order.'
 
@@ -7,7 +9,8 @@ export default function CTABanner() {
       className="relative overflow-hidden px-4 py-14 sm:py-16 text-center"
       style={{ fontFamily: "'Comfortaa', cursive" }}
     >
-      <div className="mx-auto max-w-5xl rounded-[2rem] border border-[#1a0f05]/10 bg-[#fffaf0] px-6 py-10 sm:px-8 sm:py-12 shadow-[0_10px_35px_rgba(26,15,5,0.08)]">
+      <ScrollReveal className="mx-auto max-w-5xl" y={24}>
+        <div className="rounded-[2rem] border border-[#1a0f05]/10 bg-[#fffaf0] px-6 py-10 sm:px-8 sm:py-12 shadow-[0_10px_35px_rgba(26,15,5,0.08)]">
         <div className="mb-6 flex justify-center">
           <img
             src="/images/logo.png"
@@ -58,7 +61,8 @@ export default function CTABanner() {
             View Menu
           </a>
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
   )
 }

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { ScrollReveal } from './ScrollReveal'
 
 const PRIMARY_PHONE = '08161671113'
 const PRIMARY_WHATSAPP = 'https://wa.me/2348161671113'
@@ -44,60 +45,62 @@ export default function Footer() {
       id="contact"
       style={{ fontFamily: "'Comfortaa', cursive" }}
     >
-      <div className="mx-auto max-w-5xl grid grid-cols-2 gap-8 py-10">
-        <div>
-          <h4 className="mb-3 text-base font-bold text-[#1a0f05]">Navigate</h4>
-          <ul className="space-y-2 text-sm text-[#4b4037]">
-            <li><a href="#" className="hover:text-[#f97316]">Home</a></li>
-            <li><a href="#full-menu" className="hover:text-[#f97316]">Menu</a></li>
-            <li><a href="#about" className="hover:text-[#f97316]">Why Us</a></li>
-            <li><a href="#gallery" className="hover:text-[#f97316]">Gallery</a></li>
-            <li><a href="#contact" className="hover:text-[#f97316]">Contact</a></li>
-            <li>
-              <a href={PRIMARY_WHATSAPP} target="_blank" rel="noopener noreferrer" className="hover:text-[#f97316]">
-                Book Now
-              </a>
-            </li>
-          </ul>
+      <ScrollReveal className="mx-auto max-w-5xl" y={18}>
+        <div className="grid grid-cols-2 gap-8 py-10">
+          <div>
+            <h4 className="mb-3 text-base font-bold text-[#1a0f05]">Navigate</h4>
+            <ul className="space-y-2 text-sm text-[#4b4037]">
+              <li><a href="#" className="hover:text-[#f97316]">Home</a></li>
+              <li><a href="#full-menu" className="hover:text-[#f97316]">Menu</a></li>
+              <li><a href="#about" className="hover:text-[#f97316]">Why Us</a></li>
+              <li><a href="#gallery" className="hover:text-[#f97316]">Gallery</a></li>
+              <li><a href="#contact" className="hover:text-[#f97316]">Contact</a></li>
+              <li>
+                <a href={PRIMARY_WHATSAPP} target="_blank" rel="noopener noreferrer" className="hover:text-[#f97316]">
+                  Book Now
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="mb-3 text-base font-bold text-[#1a0f05]">Contact</h4>
+            <ul className="space-y-2.5 text-sm text-[#4b4037]">
+              <li className="flex items-start gap-2.5">
+                <IconCircle><PhoneIcon /></IconCircle>
+                <a href={`tel:${PRIMARY_PHONE}`} className="hover:text-[#f97316]">{PRIMARY_PHONE}</a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <IconCircle><WhatsAppIcon /></IconCircle>
+                <a href={PRIMARY_WHATSAPP} target="_blank" rel="noopener noreferrer" className="hover:text-[#f97316]">
+                  WhatsApp Chat
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <IconCircle><MailIcon /></IconCircle>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="break-all hover:text-[#f97316]">{CONTACT_EMAIL}</a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div>
-          <h4 className="mb-3 text-base font-bold text-[#1a0f05]">Contact</h4>
-          <ul className="space-y-2.5 text-sm text-[#4b4037]">
-            <li className="flex items-start gap-2.5">
-              <IconCircle><PhoneIcon /></IconCircle>
-              <a href={`tel:${PRIMARY_PHONE}`} className="hover:text-[#f97316]">{PRIMARY_PHONE}</a>
-            </li>
-            <li className="flex items-start gap-2.5">
-              <IconCircle><WhatsAppIcon /></IconCircle>
-              <a href={PRIMARY_WHATSAPP} target="_blank" rel="noopener noreferrer" className="hover:text-[#f97316]">
-                WhatsApp Chat
-              </a>
-            </li>
-            <li className="flex items-start gap-2.5">
-              <IconCircle><MailIcon /></IconCircle>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="break-all hover:text-[#f97316]">{CONTACT_EMAIL}</a>
-            </li>
-          </ul>
+        <div className="border-t border-dashed border-[#1a0f05]/30 pt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-[11px] text-[#4b4037]">
+            (c) 2026 Bukkies Pot | All rights reserved.
+          </p>
+          <div className="flex items-center gap-4 text-[11px] text-[#4b4037]">
+            <span>Made by</span>
+            <a
+              href={MAKER_SITE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold hover:text-[#f97316]"
+            >
+              Tobiloba Sulaimon
+            </a>
+          </div>
         </div>
-      </div>
-
-      <div className="mx-auto max-w-5xl border-t border-dashed border-[#1a0f05]/30 pt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-[11px] text-[#4b4037]">
-          (c) 2026 Bukkies Pot | All rights reserved.
-        </p>
-        <div className="flex items-center gap-4 text-[11px] text-[#4b4037]">
-          <span>Made by</span>
-          <a
-            href={MAKER_SITE}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold hover:text-[#f97316]"
-          >
-            Tobiloba Sulaimon
-          </a>
-        </div>
-      </div>
+      </ScrollReveal>
     </footer>
   )
 }

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { ScrollReveal } from './ScrollReveal'
 
 type VideoPost = {
   src: string
@@ -62,20 +63,6 @@ function CameraIcon() {
       aria-hidden="true"
     >
       <path d="M9 2a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2H9zm10 3H5a2 2 0 0 0-2 2v11a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V7a2 2 0 0 0-2-2zM7 9a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm-1 9 3.2-4.27a1 1 0 0 1 1.6 0L13 17l2.2-2.93a1 1 0 0 1 1.6 0L20 18H6z" />
-    </svg>
-  )
-}
-
-function PlayIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="h-6 w-6"
-      aria-hidden="true"
-    >
-      <path d="M8 5v14l11-7z" />
     </svg>
   )
 }
@@ -190,25 +177,37 @@ export default function Gallery() {
       style={{ fontFamily: "'Comfortaa', cursive" }}
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-center mb-4">
-          <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-[#f97316] shadow-sm">
-            <CameraIcon />
+        <ScrollReveal y={18}>
+          <div className="flex justify-center mb-4">
+            <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-[#f97316] shadow-sm">
+              <CameraIcon />
+            </div>
           </div>
-        </div>
 
-        <h2 className="text-3xl font-bold text-center text-[#1a0f05] mb-2">
-          A Feast for Your Eyes
-        </h2>
-        <p className="text-center text-[#6b5a4e] text-sm mb-6 max-w-sm mx-auto leading-relaxed">
-          Tap any clip to open the TikTok-style viewer and swipe up.
-        </p>
+          <h2 className="text-3xl font-bold text-center text-[#1a0f05] mb-2">
+            A Feast for Your Eyes
+          </h2>
+          <p className="text-center text-[#6b5a4e] text-sm mb-6 max-w-sm mx-auto leading-relaxed">
+            Tap any clip to open the TikTok-style viewer and swipe up.
+          </p>
+        </ScrollReveal>
 
-        <div className="mx-auto max-w-4xl">
+        <ScrollReveal className="mx-auto max-w-4xl" y={22} delay={0.08}>
           <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 scrollbar-hide">
             {VIDEO_POSTS.map((post, index) => (
               <article
                 key={post.src}
-                className="relative h-[62vh] sm:h-[66vh] w-[78vw] sm:w-[360px] snap-start shrink-0 overflow-hidden rounded-3xl bg-black shadow-xl"
+                role="button"
+                tabIndex={0}
+                onClick={() => openFeed(index)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault()
+                    openFeed(index)
+                  }
+                }}
+                aria-label={`Open viewer from ${post.caption}`}
+                className="relative h-[62vh] sm:h-[66vh] w-[78vw] sm:w-[360px] snap-start shrink-0 overflow-hidden rounded-3xl bg-black shadow-xl cursor-pointer"
               >
                 <video
                   src={post.src}
@@ -227,34 +226,11 @@ export default function Gallery() {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
 
-                <a
-                  href={post.src}
-                  onClick={(event) => {
-                    event.preventDefault()
-                    openFeed(index)
-                  }}
-                  className="absolute inset-0 z-20 flex items-center justify-center focus-visible:outline-white"
-                  aria-label={`Open viewer from ${post.caption}`}
-                >
-                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-[#1a0f05] shadow-xl">
-                    <PlayIcon />
-                  </span>
-                </a>
-
                 {hasFailed(index) && (
-                  <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-3 bg-black/70 px-4 text-center text-white">
+                  <div className="pointer-events-none absolute inset-0 z-30 flex flex-col items-center justify-center gap-3 bg-black/70 px-4 text-center text-white">
                     <p className="text-xs sm:text-sm">
-                      This clip format is not supported in your browser preview.
+                      Preview format failed in this browser. Tap the clip to open the viewer.
                     </p>
-                    <a
-                      href={post.src}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(event) => event.stopPropagation()}
-                      className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-[#1a0f05]"
-                    >
-                      Open Clip
-                    </a>
                   </div>
                 )}
 
@@ -267,7 +243,7 @@ export default function Gallery() {
               </article>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </div>
 
       {isFeedOpen && (
