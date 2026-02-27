@@ -10,6 +10,7 @@ coverage/
 # Tooling caches
 .vite/
 .tanstack/
+.vercel/
 
 # TanStack Router generated file
 app/routeTree.gen.ts
