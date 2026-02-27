@@ -15,8 +15,10 @@ const edgeImages = {
 
 export default function Hero() {
   return (
-    <section className="bg-[#fffbf0] pt-12 pb-10 overflow-hidden">
-      <div className="relative max-w-5xl mx-auto px-6">
+    <section className="relative overflow-hidden bg-[#fffbf0] pt-12 pb-10">
+      <div className="bauhaus-halftone pointer-events-none absolute inset-0 opacity-[0.14]" />
+
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
         <div
           className="absolute -left-10 top-2 flex h-auto w-30 sm:h-24 sm:w-24 lg:left-0 lg:top-0 lg:h-[330px] lg:w-[330px] -rotate-12 lg:-rotate-9 z-10 pointer-events-none"
         >
@@ -53,7 +55,7 @@ export default function Hero() {
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 bg-[#f97316] text-white font-bold px-8 py-3 rounded-full hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 text-sm sm:text-base"
+            className="bauhaus-btn inline-flex items-center gap-2 bg-[#f97316] text-[#1a0f05] px-8 py-3 text-sm sm:text-base"
             style={{ fontFamily: "'Comfortaa', cursive" }}
           >
             Order Now <span>{'->'}</span>
@@ -62,13 +64,7 @@ export default function Hero() {
       </div>
 
       <ScrollReveal className="mt-10 mx-4 sm:mx-8 max-w-5xl lg:mx-auto" y={28} delay={0.2}>
-        <div
-          style={{
-            borderRadius: '1.5rem',
-            overflow: 'hidden',
-            boxShadow: '0 4px 24px rgba(26,15,5,0.1)',
-          }}
-        >
+        <div className="bauhaus-card-lg overflow-hidden">
           <div className="hero-slider-track" style={{ display: 'flex', width: '500%' }}>
             {sliderImages.map((img) => (
               <div key={img.src} style={{ width: '20%' }}>

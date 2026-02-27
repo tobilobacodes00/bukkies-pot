@@ -91,10 +91,10 @@ type MenuColumnProps = {
 
 function MenuColumn({ title, items, accent }: MenuColumnProps) {
   return (
-    <article className="mx-auto w-full max-w-sm rounded-3xl border border-[#f3dfc2] bg-white/90 p-5 shadow-sm">
+    <article className="bauhaus-card mx-auto w-full max-w-sm bg-white p-5">
       <div className="mb-4 flex justify-center">
         <div
-          className="inline-flex items-center rounded-full px-4 py-1.5 shadow-sm"
+          className="bauhaus-chip inline-flex items-center px-4 py-1.5"
           style={{ backgroundColor: accent }}
         >
           <h3
@@ -128,6 +128,8 @@ export default function Menu() {
       id="full-menu"
       style={{ fontFamily: "'Comfortaa', cursive" }}
     >
+      <div className="bauhaus-halftone pointer-events-none absolute inset-0 opacity-[0.1]" />
+
       {MENU_DECORATIONS.map((item) => (
         <img
           key={item.src}
@@ -141,7 +143,7 @@ export default function Menu() {
       <div className="relative z-10">
         <ScrollReveal y={18}>
           <div className="flex justify-center mb-5">
-            <div className="w-12 h-12 bg-[#f97316] rounded-full flex items-center justify-center shadow-lg text-xl">
+            <div className="bauhaus-chip flex h-12 w-12 items-center justify-center bg-[#f97316] text-xl">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -176,7 +178,7 @@ export default function Menu() {
 
         <ScrollReveal delay={0.2} y={24}>
           <div
-            className="max-w-5xl mx-auto rounded-3xl border border-[#f5c842]/20 p-6 sm:p-8 text-white text-center shadow-xl"
+            className="bauhaus-card-lg max-w-5xl mx-auto p-6 sm:p-8 text-white text-center"
             style={{ background: 'linear-gradient(135deg, #2d1a08 0%, #1a0f05 100%)' }}
           >
             <div className="flex items-center justify-center gap-2 mb-4">

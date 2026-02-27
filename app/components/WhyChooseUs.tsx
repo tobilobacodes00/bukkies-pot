@@ -4,7 +4,6 @@ type Feature = {
   title: string
   desc: string
   cardBg: string
-  borderColor: string
   iconColor: string
   ctaBg: string
   variant: 'circle' | 'tilt' | 'stack'
@@ -17,7 +16,6 @@ const FEATURES: Feature[] = [
     title: 'Fresh, Locally Sourced Ingredients.',
     desc: 'From classic favorites to modern culinary creations, every dish is made with fresh ingredients and a rich homemade touch.',
     cardBg: '#ececff',
-    borderColor: '#bfc2d6',
     iconColor: '#5a4cc7',
     ctaBg: '#f97316',
     variant: 'circle',
@@ -27,7 +25,6 @@ const FEATURES: Feature[] = [
     title: 'Authentic Recipes with a Modern Twist.',
     desc: 'Traditional flavors, updated with clean presentation and balanced seasoning that keeps guests asking for more.',
     cardBg: '#fce8d9',
-    borderColor: '#d6c2b3',
     iconColor: '#8b5e3c',
     ctaBg: '#f97316',
     variant: 'tilt',
@@ -37,7 +34,6 @@ const FEATURES: Feature[] = [
     title: 'Quick and Reliable Home Delivery.',
     desc: 'Fast prep, proper packaging, and dependable delivery timing so your meals arrive fresh and ready to enjoy.',
     cardBg: '#d8f3f0',
-    borderColor: '#a8cbc7',
     iconColor: '#0f766e',
     ctaBg: '#f97316',
     variant: 'stack',
@@ -73,7 +69,7 @@ function FeatureMedia({ feature }: { feature: Feature }) {
         <img
           src={feature.imageA}
           alt={feature.title}
-          className="h-44 w-44 rounded-full object-cover shadow-lg"
+          className="h-44 w-44 rounded-full border-[3px] border-[#1a0f05] object-cover shadow-[6px_6px_0_#1a0f05]"
           loading="lazy"
         />
         <span className="absolute -bottom-2 -right-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#7c3aed] text-white shadow-lg text-lg">
@@ -89,7 +85,7 @@ function FeatureMedia({ feature }: { feature: Feature }) {
         <img
           src={feature.imageA}
           alt={feature.title}
-          className="-rotate-6 h-44 w-44 rounded-2xl object-cover shadow-lg"
+          className="-rotate-6 h-44 w-44 rounded-2xl border-[3px] border-[#1a0f05] object-cover shadow-[6px_6px_0_#1a0f05]"
           loading="lazy"
         />
         <span className="absolute -bottom-2 -right-2 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#f97316] text-white shadow-lg text-lg">
@@ -104,13 +100,13 @@ function FeatureMedia({ feature }: { feature: Feature }) {
       <img
         src={feature.imageA}
         alt={feature.title}
-        className="absolute left-0 top-6 h-30 w-30 rounded-2xl object-cover shadow-lg"
+        className="absolute left-0 top-6 h-30 w-30 rounded-2xl border-[3px] border-[#1a0f05] object-cover shadow-[5px_5px_0_#1a0f05]"
         loading="lazy"
       />
       <img
         src={feature.imageB}
         alt={feature.title}
-        className="absolute right-0 top-0 h-34 w-34 rounded-2xl object-cover shadow-lg"
+        className="absolute right-0 top-0 h-34 w-34 rounded-2xl border-[3px] border-[#1a0f05] object-cover shadow-[5px_5px_0_#1a0f05]"
         loading="lazy"
       />
       <span className="absolute bottom-0 left-12 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#9333ea] text-white text-xs shadow-lg">
@@ -123,10 +119,12 @@ function FeatureMedia({ feature }: { feature: Feature }) {
 export default function WhyChooseUs() {
   return (
     <section
-      className="bg-[#f6edf3] py-16"
+      className="relative overflow-hidden bg-[#f6edf3] py-16"
       id="about"
       style={{ fontFamily: "'Comfortaa', cursive" }}
     >
+      <div className="bauhaus-halftone pointer-events-none absolute inset-0 opacity-[0.08]" />
+
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <ScrollReveal y={18}>
           <h2 className="mb-2 text-center text-3xl font-bold text-[#1a0f05] sm:text-4xl">
@@ -142,10 +140,9 @@ export default function WhyChooseUs() {
           {FEATURES.map((feature, index) => (
             <ScrollReveal key={feature.title} delay={0.08 * index} y={22}>
               <article
-                className="rounded-3xl border p-5 sm:p-7"
+                className="bauhaus-card p-5 sm:p-7"
                 style={{
                   backgroundColor: feature.cardBg,
-                  borderColor: feature.borderColor,
                 }}
               >
                 <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-center">
@@ -168,7 +165,7 @@ export default function WhyChooseUs() {
                     </p>
                     <a
                       href="#full-menu"
-                      className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold text-white shadow-md transition-colors hover:brightness-95"
+                      className="bauhaus-btn inline-flex items-center gap-2 px-5 py-2 text-xs text-[#1a0f05]"
                       style={{ backgroundColor: feature.ctaBg }}
                     >
                       View Menu {'->'}

@@ -111,10 +111,10 @@ export default function Navbar() {
     }
 
   const itemClass = (href: string) =>
-    `rounded-full px-3 py-1.5 transition-colors ${
+    `rounded-full border-2 px-3 py-1.5 transition-colors ${
       activeHref === href
-        ? 'bg-[#1a0f05] text-white'
-        : 'text-[#1a0f05] hover:bg-[#f97316]/10 hover:text-[#f97316]'
+        ? 'border-[#1a0f05] bg-[#f5c842] text-[#1a0f05] shadow-[2px_2px_0_#1a0f05]'
+        : 'border-transparent text-[#1a0f05] hover:border-[#1a0f05] hover:bg-[#fff3da]'
     }`
 
   return (
@@ -124,7 +124,7 @@ export default function Navbar() {
       aria-label="Primary"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="rounded-full border border-[#1a0f05]/10 bg-[#fffbf0]/95 shadow-[0_8px_30px_rgba(26,15,5,0.12)] backdrop-blur-md">
+        <div className="rounded-full border-[3px] border-[#1a0f05] bg-[#fffaf0] shadow-[6px_6px_0_#1a0f05]">
           <div className="relative flex items-center justify-between gap-3 px-4 sm:px-6 py-2.5">
             <a
               href="#"
@@ -139,7 +139,7 @@ export default function Navbar() {
               />
             </a>
 
-            <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:flex items-center gap-1.5 rounded-full border border-[#1a0f05]/8 bg-white/70 px-2 py-1 text-sm font-medium">
+            <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:flex items-center gap-1.5 rounded-full border-[2px] border-[#1a0f05] bg-white px-2 py-1 text-sm font-semibold shadow-[3px_3px_0_#1a0f05]">
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.label}
@@ -157,7 +157,7 @@ export default function Navbar() {
               href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:inline-flex items-center gap-1.5 rounded-full bg-[#1a0f05] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#2d1a0a]"
+              className="bauhaus-btn hidden lg:inline-flex items-center gap-1.5 bg-[#f97316] px-4 py-2 text-xs text-[#1a0f05]"
             >
               Order on WhatsApp
             </a>
@@ -173,7 +173,7 @@ export default function Navbar() {
 
               <label
                 htmlFor="mobile-nav-toggle"
-                className="relative z-[230] inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg hover:bg-orange-50 transition-colors peer-checked:hidden"
+                className="relative z-[230] inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border-2 border-[#1a0f05] bg-[#fffaf0] shadow-[2px_2px_0_#1a0f05] transition-colors hover:bg-orange-50 peer-checked:hidden"
                 aria-label="Open menu"
               >
                 <svg
@@ -191,7 +191,7 @@ export default function Navbar() {
 
               <label
                 htmlFor="mobile-nav-toggle"
-                className="relative z-[230] hidden h-10 w-10 cursor-pointer items-center justify-center rounded-lg hover:bg-orange-50 transition-colors peer-checked:inline-flex"
+                className="relative z-[230] hidden h-10 w-10 cursor-pointer items-center justify-center rounded-lg border-2 border-[#1a0f05] bg-[#fffaf0] shadow-[2px_2px_0_#1a0f05] transition-colors hover:bg-orange-50 peer-checked:inline-flex"
                 aria-label="Close menu"
               >
                 <svg
@@ -215,7 +215,7 @@ export default function Navbar() {
 
               <div
                 id="mobile-menu"
-                className="fixed left-1/2 top-[86px] z-[220] hidden w-[calc(100vw-2rem)] max-w-sm -translate-x-1/2 rounded-2xl border border-[#1a0f05]/10 bg-[#fffbf0]/98 px-5 py-4 shadow-xl backdrop-blur-md peer-checked:block md:hidden"
+                className="fixed left-1/2 top-[86px] z-[220] hidden w-[calc(100vw-2rem)] max-w-sm -translate-x-1/2 rounded-2xl border-[3px] border-[#1a0f05] bg-[#fffaf0] px-5 py-4 shadow-[6px_6px_0_#1a0f05] peer-checked:block md:hidden"
               >
                 <div className="flex flex-col items-center gap-2 text-sm font-medium">
                   {NAV_ITEMS.map((item) => (
@@ -223,10 +223,10 @@ export default function Navbar() {
                       key={item.label}
                       href={item.href}
                       onClick={handleNavClick(item.href)}
-                      className={`w-full rounded-xl px-3 py-2 text-center transition-colors ${
+                      className={`w-full rounded-xl border-2 px-3 py-2 text-center transition-colors ${
                         activeHref === item.href
-                          ? 'bg-[#1a0f05] text-white'
-                          : 'text-[#1a0f05] hover:bg-[#f97316]/10 hover:text-[#f97316]'
+                          ? 'border-[#1a0f05] bg-[#f5c842] text-[#1a0f05] shadow-[2px_2px_0_#1a0f05]'
+                          : 'border-transparent text-[#1a0f05] hover:border-[#1a0f05] hover:bg-[#fff3da]'
                       }`}
                       aria-current={activeHref === item.href ? 'page' : undefined}
                     >
@@ -238,7 +238,7 @@ export default function Navbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={closeMenu}
-                    className="mt-1 inline-flex w-full justify-center rounded-full bg-[#1a0f05] px-4 py-2.5 text-center text-xs font-semibold text-white"
+                    className="bauhaus-btn mt-1 inline-flex w-full justify-center bg-[#f97316] px-4 py-2.5 text-center text-xs text-[#1a0f05]"
                   >
                     Order on WhatsApp
                   </a>
