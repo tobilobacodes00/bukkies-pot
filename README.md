@@ -20,7 +20,7 @@ The official website for **Bukkie's Pot**, a Nigerian food catering business off
 | Font | [Comfortaa](https://fonts.google.com/specimen/Comfortaa) via Google Fonts |
 
 ---
-
+ 
 ## Getting Started
 
 **Requirements:** Node.js 18+
